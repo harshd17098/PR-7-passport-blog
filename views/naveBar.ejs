@@ -1,0 +1,72 @@
+<header class="header" data-header>
+  <div class="container">
+
+    <a href="#" class="logo">
+      <img
+        src="https://img.freepik.com/premium-vector/author-blog-logo-flat-illustration-author-blog-vector-logo-web-design_98402-32812.jpg"
+        width="50" height="50" alt="Wren logo">
+    </a>
+
+    <nav class="navbar" data-navbar>
+
+      <div class="navbar-top">
+        <a href="" class="logo">
+          <img src="./assets/images/logo.svg" width="119" height="37" alt="Wren logo">
+        </a>
+
+        <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
+          <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+        </button>
+      </div>
+
+      <ul class="navbar-list">
+
+        <li>
+          <a href="/admin" class="navbar-link hover-1" data-nav-toggler>Home</a>
+        </li>
+
+        <li>
+          <a href="/admin/adminForm" class="navbar-link hover-1" data-nav-toggler>Admin Form</a>
+        </li>
+
+        <li>
+          <a href="/blog/blogForm" class="navbar-link hover-1" data-nav-toggler>Blog Form</a>
+        </li>
+
+        <li>
+          <a href="/blog/viewBlog" class="navbar-link hover-1" data-nav-toggler>View Blog</a>
+        </li>
+      </ul>
+      <div class="navbar-bottom">
+        <div class="profile-card">
+          <img src="./assets/images/author-1.png" width="48" height="48" alt="Steven" class="profile-banner">
+          <div>
+            <p class="card-title">Hello Steven !</p>
+            <p class="card-subtitle">
+              You have 3 new messages
+            </p>
+          </div>
+        </div>
+
+
+
+      </div>
+
+
+
+    </nav>
+    <div style="display: flex; align-items: center;">
+      <p style="padding-right: 20px; font-size: 20px; color: hsla(199, 89%, 49%, 1);"><%= locals.admin.firstname %> <%= locals.admin.lastname %></p>
+      <a href="/logout" class="btn btn-primary">LogOut</a>
+
+
+
+
+    </div>
+
+    <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+      <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
+    </button>
+
+  </div>
+</header>

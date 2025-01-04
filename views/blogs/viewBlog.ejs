@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- 
+    - primary meta tags
+  -->
+  <title>Wren - Perosonal Blog Website</title>
+  <meta name="title" content="Wren - Perosonal Blog Website">
+  <meta name="description" content="This is a blog html template made by codewithsadee">
+
+  <!-- 
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+
+  <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- 
+    - custom css link
+  -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <!-- 
+    - preload images
+  -->
+  <link rel="preload" as="image" href="../assets/images/hero-banner.png">
+  <link rel="preload" as="image" href="../assets/images/pattern-2.svg">
+  <link rel="preload" as="image" href="../assets/images/pattern-3.svg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+<style>
+  input {
+    background-color: rgba(10, 12, 13, 0.589);
+    margin-top: 15px;
+    margin-bottom: 15px;
+    min-width: 500px;
+    padding: 10px;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+</style>
+
+<body id="top">
+
+  <!-- 
+    - #HEADER
+  -->
+
+  <%- include('../naveBar.ejs')%>
+
+
+
+
+
+
+    <main>
+      <article>
+
+
+        <section class="hero" id="home" aria-label="home" style="padding-top: 99px !important;">
+
+          <div class="hero-content">
+
+            <% const categories=['All','Sports','News','Travelling','Education','Food'] %>
+              <h6 class="headline headline-1 section-title" style="text-align: center;">
+
+                <% categories.forEach(category=>{ %>
+                  <a href="<%= category==='All' ? '/blog/viewBlog' : `/blog/viewBlog?category=${category}`%> 
+                    " class="span" style="font-size: 18px;">
+                    <%= category %> 
+                  </a>
+               
+                  <% 
+
+                    })%>
+
+
+
+
+          </div>
+
+
+
+
+        </section>
+
+
+
+        <section class="topics" id="topics" aria-labelledby="topic-label">
+          <div class="container">
+
+            <div class="card topic-card">
+
+              <div class="card-content">
+
+                <h2 class="headline headline-2 section-title card-title" id="topic-label">
+                  All Blog
+                </h2>
+
+                <p class="card-text">
+                  Don't miss out on the latest news about Travel tips, Hotels review, Food guide...
+                </p>
+
+                <div class="btn-group">
+                  <button class="btn-icon" aria-label="previous" data-slider-prev>
+                    <ion-icon name="arrow-back" aria-hidden="true"></ion-icon>
+                  </button>
+
+                  <button class="btn-icon" aria-label="next" data-slider-next>
+                    <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                  </button>
+                </div>
+
+              </div>
+
+              <div class="slider" data-slider>
+                <ul class="slider-list" data-slider-container>
+                  <% blog.map((Blog)=> { %>
+                    <li class="slider-item">
+                      <a href="/blog/detailBlog/<%= Blog.id%>" class="slider-card">
+
+                        <figure class="slider-banner img-holder" style="--width: 507; --height: 618;">
+                          <img src="<%= Blog.blogImg%>" width="507" height="618" loading="lazy" alt="Sport"
+                            class="img-cover">
+                        </figure>
+
+                        <div class="slider-content">
+                          <span class="slider-title">
+                            <%= Blog.category%>
+                          </span>
+                          <p class="slider-subtitle" style="margin-bottom:8px ;"> - <%= Blog.author%>
+                          </p>
+                          <p class="slider-subtitle">
+                            <%= Blog.times%> HR MINT
+                          </p>
+                        </div>
+                      </a>
+                    </li>
+                    <% }) %>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+
+
+
+
+        <section class="topics" id="topics" aria-labelledby="topic-label">
+          <div class="container" style="display: flex;justify-content: center;">
+
+
+          </div>
+
+          </div>
+        </section>
+
+
+
+
+
+
+        <section class="section feature" aria-label="feature" id="featured">
+
+
+
+          <ul class="feature-list">
+            <div class="row">
+              <% blog.map((Blog)=> { %>
+
+                <li style="width: 479px; margin-left: 100px;">
+                  <div class="card feature-card" style="margin-top: 25px;">
+
+                    <figure class="card-banner img-holder" style="--width: 1602; --height: 903;">
+                      <img src="<%= Blog.blogImg%> " width="1602" height="903" loading="lazy"
+                        alt="Self-observation is the first step of inner unfolding" class="img-cover">
+                    </figure>
+                    <div class="card-content">
+
+                      <div class="card-wrapper">
+                        <div class="card-tag">
+                          <a href="#" class="span hover-2">#Design</a>
+
+                          <a href="#" class="span hover-2">#Movie</a>
+                        </div>
+                        <p>
+                          <%= Blog.category%>
+                        </p>
+                        <div class="wrapper">
+                          <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
+
+                          <span class="span">
+                            <%= Blog.times%> HR MINT
+                          </span>
+                        </div>
+                      </div>
+
+                      <h3 class="headline headline-3">
+                        <a href="" class="card-title hover-2">
+                          <%= Blog.title%>
+                        </a>
+                      </h3>
+
+                      <div class="card-wrapper">
+
+                        <div class="profile-card">
+                          <img src="../assets/images/author-1.png" width="48" height="48" loading="lazy" alt="Joseph"
+                            class="profile-banner">
+
+                          <div>
+                            <p>
+                              <%= Blog.author%>
+                            </p>
+
+
+                            <p class="card-subtitle"><%= Blog.dates%></p>
+                          </div>
+                        </div>
+
+                        <a href="/blog/detailBlog/<%= Blog.id%>" class="card-btn">Read more</a>
+
+                      </div>
+
+                      <div style="display: flex; flex-wrap: wrap; justify-content:space-around;">
+                        <a href="/blog/delete/<%= Blog.id%>"> <button class="card tag-btn" type="submit"
+                            style="width: 90px; justify-content:center ;">
+                            <p class="btn-text"><i class="fa-solid fa-trash" style="font-size: 25px; color: red;"></i>
+                            </p>
+                          </button></a>
+
+
+
+                        <a href="/blog/editBlog/<%= Blog.id%>"> <button class="card tag-btn" type="submit"
+                            style="width: 90px; justify-content:center ;">
+                            <p class="btn-text"><i class="fa-solid fa-file-pen"
+                                style="font-size: 25px; color:#7CFC00;"></i></p>
+                          </button></a>
+
+                      </div>
+
+                    </div>
+
+                  </div>
+
+
+                </li>
+                <% }) %>
+
+            </div>
+          </ul>
+
+          <a href="#" class="btn btn-secondary">
+            <span class="span">Show More Posts</span>
+
+            <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+          </a>
+
+          </div>
+
+
+
+
+        </section>
+
+
+
+
+
+
+
+
+      </article>
+    </main>
+
+
+
+
+
+
+
+
+
+    <!-- 
+    - #BACK TO TOP
+  -->
+
+    <a href="#top" class="back-top-btn" aria-label="back to top" data-back-top-btn>
+      <ion-icon name="arrow-up-outline" aria-hidden="true"></ion-icon>
+    </a>
+
+
+
+
+
+    <!-- 
+    - custom js link
+  -->
+    <script src="../assets/js/script.js"></script>
+
+    <!-- 
+    - ionicon link
+  -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>
