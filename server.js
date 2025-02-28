@@ -6,6 +6,9 @@ const db = require("./config/dbConnection");
 const session = require('express-session');
 const passport = require("passport");
 const localSt = require("./config/passportlocalstrategy");
+const flash = require("connect-flash");
+const flashConnect = require("./config/flashConnect");
+
 
 
 
@@ -27,10 +30,12 @@ app.use(session({
         maxAge: 5000 * 60 * 60 * 60,
     }
 }))
-
+app.use(flash()); 
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(passport.setLocalUser)
+app.use(passport.setLocalUser);
+app.use(flashConnect.setFalsh);
+
 
 
 

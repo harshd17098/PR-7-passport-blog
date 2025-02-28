@@ -6,7 +6,6 @@ const fs = require('fs');
 
 exports.addBlogPage = async (req, res) => {
 
-
         return res.render('blogs/blogForm')
 };
 exports.addNewBlog = async (req, res) => {
@@ -42,27 +41,24 @@ exports.addNewBlog = async (req, res) => {
 
 
 exports.viewAllBlog = async (req, res) => {
-
-
     let allblog;
+    let loginuser = res.locals.admin;
+
     const category = req.query.category;
+
+    const pipeline = [];
+
     if (category && category !== 'All') {
-        allblog = await Blog.find({ category })
-    }
-    else {
-        allblog = await Blog.find()
+        pipeline.push({ $match: { category } });
     }
 
-    if (req.isAuthenticated()) {
-        return res.render('blogs/viewBlog', { blog: allblog });
-    }
-    else {
-        return res.redirect("/")
+    if (pipeline.length === 0) {
+        pipeline.push({ $match: {} }); // This will match all documents
     }
 
+    allblog = await Blog.aggregate(pipeline);
 
-
-
+    return res.render('blogs/viewBlog', { blog: allblog, loginuser, categories: ['All', 'Sports', 'News', 'Travelling', 'Education', 'Food'] });
 };
 
 exports.blogDelete = async (req, res) => {
@@ -76,10 +72,12 @@ exports.blogDelete = async (req, res) => {
                 let imagepath = path.join(__dirname, "..", rec.blogImg);
                 await fs.unlinkSync(imagepath);
                 await Blog.findByIdAndDelete(req.params.id);
+                await  req.flash('success', 'Blog Delete Successfully...')
                 return res.redirect('back');
             } else {
                 await Blog.findByIdAndDelete(req.params.id);
                 console.log("Delete Success");
+                await  req.flash('success', 'Blog Delete Successfully...')
                 return res.redirect('back');
             }
         }
@@ -90,7 +88,6 @@ exports.blogDelete = async (req, res) => {
     }
 
 };
-
 exports.editBlogPage = async (req, res) => {
 
     try {
@@ -136,6 +133,7 @@ exports.updateBlog = async (req, res) => {
             }
             await Blog.findByIdAndUpdate(req.params.id, req.body, { new: true });
             console.log("Update Record Success...");
+            await  req.flash('edit', 'Blog Edit Successfully...')
             return res.redirect("/blog/viewBlog")
         } else {
             console.log("Record not Found...")

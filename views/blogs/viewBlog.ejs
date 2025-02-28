@@ -82,12 +82,10 @@
                 <% categories.forEach(category=>{ %>
                   <a href="<%= category==='All' ? '/blog/viewBlog' : `/blog/viewBlog?category=${category}`%> 
                     " class="span" style="font-size: 18px;">
-                    <%= category %> 
+                    <%= category %>
                   </a>
-               
-                  <% 
 
-                    })%>
+                  <% })%>
 
 
 
@@ -230,30 +228,73 @@
                             </p>
 
 
-                            <p class="card-subtitle"><%= Blog.dates%></p>
+                            <p class="card-subtitle">
+                              <%= Blog.dates%>
+                            </p>
                           </div>
                         </div>
 
                         <a href="/blog/detailBlog/<%= Blog.id%>" class="card-btn">Read more</a>
-
                       </div>
 
-                      <div style="display: flex; flex-wrap: wrap; justify-content:space-around;">
-                        <a href="/blog/delete/<%= Blog.id%>"> <button class="card tag-btn" type="submit"
-                            style="width: 90px; justify-content:center ;">
+
+                      <% if (loginuser.email==Blog.authorEmail) { %>
+                        <div style="display: flex; flex-wrap: wrap; justify-content: space-around;">
+                          <button class="card tag-btn" type="button" style="width: 90px; justify-content: center;"
+                            onclick="confirmDelete('<%= Blog.id %>')">
                             <p class="btn-text"><i class="fa-solid fa-trash" style="font-size: 25px; color: red;"></i>
                             </p>
-                          </button></a>
+                          </button>
 
+                          <a href="/blog/editBlog/<%= Blog.id %>">
+                            <button class="card tag-btn" type="button" style="width: 90px; justify-content: center;"
+                             >
+                              <p class="btn-text"><i class="fa-solid fa-file-pen"
+                                  style="font-size: 25px; color: #7CFC00;"></i></p>
+                            </button>
+                          </a>
+                        </div>
 
+                        <script>
+                          function confirmDelete(blogId) {
+                            Swal.fire({
+                              title: "<%= locals.flash.delete %>",
+                              text: "You won't be able to revert this!",
+                              icon: "warning",
+                              showCancelButton: true,
+                              confirmButtonColor: "#3085d6",
+                              cancelButtonColor: "#d33",
+                              confirmButtonText: "Yes, delete it!"
+                            }).then((result) => {
+                              if (result.isConfirmed) {
+                                Swal.fire({
+                                  title: "Deleted!",
+                                  text: "Your file has been deleted.",
+                                  icon: "success"
+                                });
+                                window.location.href = "/blog/delete/" + blogId;
+                              }
+                            });
+                          }
+                        
+                        </script>
 
-                        <a href="/blog/editBlog/<%= Blog.id%>"> <button class="card tag-btn" type="submit"
-                            style="width: 90px; justify-content:center ;">
-                            <p class="btn-text"><i class="fa-solid fa-file-pen"
-                                style="font-size: 25px; color:#7CFC00;"></i></p>
-                          </button></a>
+                        <% } else { %>
 
-                      </div>
+                          <div style="display: flex; flex-wrap: wrap; justify-content:space-around;">
+                            <button class="" disabled type="submit"
+                              style="width: 90px; justify-content:center ;cursor: none;">
+                              <p class="btn-text"><i class="fa-solid fa-trash" style="font-size: 25px; color: red;"></i>
+                              </p>
+                            </button>
+
+                            <button class="" disabled type="submit"
+                              style="width: 90px; justify-content:center ; cursor: none;">
+                              <p class=""><i class="fa-solid fa-file-pen" style="font-size: 25px; color:#7CFC00;"></i>
+                              </p>
+                            </button>
+                          </div>
+                          <% } %>
 
                     </div>
 
@@ -304,14 +345,10 @@
     <a href="#top" class="back-top-btn" aria-label="back to top" data-back-top-btn>
       <ion-icon name="arrow-up-outline" aria-hidden="true"></ion-icon>
     </a>
-
-
-
-
-
     <!-- 
     - custom js link
   -->
+
     <script src="../assets/js/script.js"></script>
 
     <!-- 

@@ -39,14 +39,15 @@
   <link rel="preload" as="image" href="/assets/images/pattern-3.svg">
 </head>
 <style>
-    input {
-        background-color: rgba(10, 12, 13, 0.589);
-        margin-top: 15px;
-        margin-bottom: 15px;
-        min-width: 500px;
-        padding: 10px;
-    }
+  input {
+    background-color: rgba(10, 12, 13, 0.589);
+    margin-top: 15px;
+    margin-bottom: 15px;
+    min-width: 500px;
+    padding: 10px;
+  }
 </style>
+
 <body id="top">
 
   <!-- 
@@ -60,105 +61,126 @@
 
 
 
-  <main>
-    <article>
+    <main>
+      <article>
 
-      <!-- 
+        <!-- 
         - #HERO
       -->
 
-      <section class="hero" id="home" aria-label="home" style="padding-top: 99px !important;">
+        <section class="hero" id="home" aria-label="home" style="padding-top: 99px !important;">
 
 
-        <div class="hero-content">
+          <div class="hero-content">
 
 
             <h1 class="headline headline-1 section-title" style="text-align: center;">
-                <span class="span"> Edit Blog Form</span>
+              <span class="span"> Edit Blog Form</span>
             </h1>
 
 
 
-        </div>
+          </div>
 
 
 
 
-    </section>
+        </section>
 
 
-    <section class="topics" id="topics" aria-labelledby="topic-label">
-        <div class="container" style="display: flex;justify-content: center;">
+        <section class="topics" id="topics" aria-labelledby="topic-label">
+          <div class="container" style="display: flex;justify-content: center;">
 
             <div class="card topic-card"
-                style="width: 68%; display: flex; justify-content: center; margin-bottom: 45px;">
+              style="width: 68%; display: flex; justify-content: center; margin-bottom: 45px;">
 
-                <form method="post" action="/blog/updateBlog/<%= editBlog.id %>" enctype="multipart/form-data">
-                    <div>
-                        <label for="inputField"
-                            style="margin-left: 10px;font-size: 20px; color: hsla(216, 100%, 95%, 1);">Category</label><br>
-                        <select name="category" id="" 
-                            style="width: 550px; background-color: rgba(0, 0, 0, 0.451); color:hsla(216, 100%, 95%, 1) ; padding: 10px; margin-bottom: 15px;margin-top: 15px;" >
-                            <option value="Sports"<%= editBlog.category==="Sports"?'selected':""%>>Sports</option>
-                            <option value="News"<%= editBlog.category==="News"?'selected':""%>>News</option>
-                            <option value="Travelling"<%= editBlog.category==="Travelling"?'selected':""%>>Traveling</option>
-                            <option value="Education"<%= editBlog.category==="Education"?'selected':""%>>Education</option>
-                            <option value="Food"<%= editBlog.category==="Food"?'selected':""%>>Food</option>
-
-
-                        </select>
-                    </div>
-                    <div>
-                        <label for="inputField"
-                            style="margin-left: 10px;font-size: 20px; color: hsla(216, 100%, 95%, 1);">Title</label>
-                        <input id="inputField" type="text" name="title" placeholder="Enter Title"  value="<%= editBlog.title %>">
-                    </div>
-                    <div>
-                        <label for="inputField"
-                            style="margin-left: 10px;font-size: 20px; color: hsla(216, 100%, 95%, 1);">Depreciation</label>
-                        <input id="inputField" type="text" name="depreciation"value="<%= editBlog.depreciation %>"
-                            placeholder="Enter Depreciation">
-                    </div>
-                    <div>
-                        <label for="inputField"
-                            style="margin-left: 10px;font-size: 20px; color: hsla(216, 100%, 95%, 1);">Date</label>
-                        <input id="inputField" type="date" name="dates" placeholder="Enter Date"value="<%= editBlog.dates %>">
-                    </div>
-                    <div>
-                        <label for="inputField"
-                            style="margin-left: 10px;font-size: 20px; color: hsla(216, 100%, 95%, 1);">Time</label>
-                        <input id="inputField" type="time" name="times" placeholder="Enter Time"value="<%= editBlog.times %>">
-                    </div>
-                    <div>
-                        <label for="inputField"
-                            style="margin-left: 10px;font-size: 20px; color: hsla(216, 100%, 95%, 1);">Image</label>
-                        <input id="inputField" type="file" name="blogImg" placeholder="Enter Image"value="<%= editBlog.blogImg %>">
-                        <img src="<%= editBlog.blogImg %>" style="height: 120px;" alt="">
-                    </div>
-
-                    <div style="display: flex;justify-content: center;margin-top: 25px;">
-                        <button class="card tag-btn" type="submit" style="width: 70px;">
-                            <p class="btn-text">Edit</p>
-                        </button>
-                    </div>
+              <form method="post" action="/blog/updateBlog/<%= editBlog.id %>" enctype="multipart/form-data">
+                <div>
+                  <label for="inputField"
+                    style="margin-left: 10px;font-size: 20px; color: hsla(216, 100%, 95%, 1);">Category</label><br>
+                  <select name="category" id=""
+                    style="width: 550px; background-color: rgba(0, 0, 0, 0.451); color:hsla(216, 100%, 95%, 1) ; padding: 10px; margin-bottom: 15px;margin-top: 15px;">
+                    <option value="Sports" <%=editBlog.category==="Sports" ?'selected':""%>>Sports</option>
+                    <option value="News" <%=editBlog.category==="News" ?'selected':""%>>News</option>
+                    <option value="Travelling" <%=editBlog.category==="Travelling" ?'selected':""%>>Traveling</option>
+                    <option value="Education" <%=editBlog.category==="Education" ?'selected':""%>>Education</option>
+                    <option value="Food" <%=editBlog.category==="Food" ?'selected':""%>>Food</option>
 
 
-                </form>
+                  </select>
+                </div>
+                <div>
+                  <label for="inputField"
+                    style="margin-left: 10px;font-size: 20px; color: hsla(216, 100%, 95%, 1);">Title</label>
+                  <input id="inputField" type="text" name="title" placeholder="Enter Title"
+                    value="<%= editBlog.title %>">
+                </div>
+                <div>
+                  <label for="inputField"
+                    style="margin-left: 10px;font-size: 20px; color: hsla(216, 100%, 95%, 1);">Depreciation</label>
+                  <input id="inputField" type="text" name="depreciation" value="<%= editBlog.depreciation %>"
+                    placeholder="Enter Depreciation">
+                </div>
+                <div>
+                  <label for="inputField"
+                    style="margin-left: 10px;font-size: 20px; color: hsla(216, 100%, 95%, 1);">Date</label>
+                  <input id="inputField" type="date" name="dates" placeholder="Enter Date"
+                    value="<%= editBlog.dates %>">
+                </div>
+                <div>
+                  <label for="inputField"
+                    style="margin-left: 10px;font-size: 20px; color: hsla(216, 100%, 95%, 1);">Time</label>
+                  <input id="inputField" type="time" name="times" placeholder="Enter Time"
+                    value="<%= editBlog.times %>">
+                </div>
+                <div>
+                  <label for="inputField"
+                    style="margin-left: 10px;font-size: 20px; color: hsla(216, 100%, 95%, 1);">Image</label>
+                  <input id="inputField" type="file" name="blogImg" placeholder="Enter Image"
+                    value="<%= editBlog.blogImg %>">
+                  <img src="<%= editBlog.blogImg %>" style="height: 120px;" alt="">
+                </div>
+
+                <div style="display: flex; justify-content: center; margin-top: 25px;">
+                  <button class="card tag-btn" type="submit" style="width: 70px;" onclick="confirmEdit('<%= editBlog.id %>')">
+                      <p class="btn-text">Edit</p>
+                  </button>
+              </div>
+              <script>
+                  function confirmEdit(editBlogId) {
+                      Swal.fire({
+                          title: "<%= locals.flash.edit %>",
+                          text: "Do you want to save your changes?",
+                          icon: "warning",
+                          showDenyButton: true,
+                          showCancelButton: true,
+                          confirmButtonText: "Save",
+                          denyButtonText: "Don't save",
+                          cancelButtonText: "Cancel"
+                      }).then((result) => {
+                          if (result.isConfirmed) {
+                              // Redirect to the edit page
+                              window.location.href = "/blog/editBlog/" + editBlogId;
+                              Swal.fire("Saved!", "Your changes have been saved.", "success");
+                          } else if (result.isDenied) {
+                              // User chose not to save changes
+                              Swal.fire("Changes are not saved", "", "info");
+                          } else if (result.isDismissed) {
+                              // User canceled the action
+                              Swal.fire("Action canceled", "", "info");
+                          }
+                      });
+                  }
+              </script>
+
+
+
+              </form>
             </div>
-        </div>
+          </div>
 
-        </div>
-    </section>
-
-
-
-     
-
-
-
-
-
-     
+          </div>
+        </section>
 
 
 
@@ -170,17 +192,6 @@
 
 
 
-     
-      
-
-    </article>
-  </main>
-
-
-
-
-
-  
 
 
 
@@ -188,28 +199,49 @@
 
 
 
-  <!-- 
+
+
+
+
+
+
+      </article>
+    </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- 
     - #BACK TO TOP
   -->
 
-  <a href="#top" class="back-top-btn" aria-label="back to top" data-back-top-btn>
-    <ion-icon name="arrow-up-outline" aria-hidden="true"></ion-icon>
-  </a>
+    <a href="#top" class="back-top-btn" aria-label="back to top" data-back-top-btn>
+      <ion-icon name="arrow-up-outline" aria-hidden="true"></ion-icon>
+    </a>
 
 
 
 
 
-  <!-- 
+    <!-- 
     - custom js link
   -->
-  <script src="/assets/js/script.js"></script>
+    <script src="/assets/js/script.js"></script>
 
-  <!-- 
+    <!-- 
     - ionicon link
   -->
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
 </body>
 

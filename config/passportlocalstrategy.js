@@ -30,7 +30,6 @@ passport.deserializeUser(async (id, cb)=> {
 });
 
 passport.validateUser = (req, res, next) => {
-    
     if(req.isAuthenticated()){
         next();
     }else{

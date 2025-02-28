@@ -1,3 +1,5 @@
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <header class="header" data-header>
   <div class="container">
 
@@ -56,8 +58,13 @@
 
     </nav>
     <div style="display: flex; align-items: center;">
-      <p style="padding-right: 20px; font-size: 20px; color: hsla(199, 89%, 49%, 1);"><%= locals.admin.firstname %> <%= locals.admin.lastname %></p>
+      <p style="padding-right: 20px; font-size: 20px; color: hsla(199, 89%, 49%, 1);">
+        <%= locals.admin.firstname %>
+          <%= locals.admin.lastname %>
+      </p>
       <a href="/logout" class="btn btn-primary">LogOut</a>
+
+      
 
 
 
@@ -69,4 +76,17 @@
     </button>
 
   </div>
+
+  <script>
+
+    "<% if(locals.flash.success.length > 0){ %>"
+    Swal.fire({
+      title: "<%= locals.flash.success %>",
+      text: "You clicked the button!",
+      icon: "success",
+    });
+    " <% } %>"
+
+  </script>
+
 </header>
