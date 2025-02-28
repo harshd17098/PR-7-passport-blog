@@ -42,23 +42,18 @@ exports.addNewBlog = async (req, res) => {
 
 exports.viewAllBlog = async (req, res) => {
     let allblog;
-    let loginuser = res.locals.admin;
-
+    let loginuser= res.locals.admin
+    
     const category = req.query.category;
-
-    const pipeline = [];
-
     if (category && category !== 'All') {
-        pipeline.push({ $match: { category } });
+        allblog = await Blog.find({ category })
+    }
+    else {
+        allblog = await Blog.find()
     }
 
-    if (pipeline.length === 0) {
-        pipeline.push({ $match: {} }); // This will match all documents
-    }
-
-    allblog = await Blog.aggregate(pipeline);
-
-    return res.render('blogs/viewBlog', { blog: allblog, loginuser, categories: ['All', 'Sports', 'News', 'Travelling', 'Education', 'Food'] });
+        return res.render('blogs/viewBlog', { blog: allblog, loginuser});
+  
 };
 
 exports.blogDelete = async (req, res) => {
